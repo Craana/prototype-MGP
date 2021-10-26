@@ -18,19 +18,7 @@ public class CharacterMovingScript : MonoBehaviour
     {
         Vector3 movement = new Vector3(0, 0, speed * Time.deltaTime);
         transform.Translate(movement);
-    }
-
-
-      void TouchInputs()
-    {
-
-
-
 
     }
-
-
-
-
 
 }
