@@ -4,69 +4,118 @@ using UnityEngine;
 
 public class SwipeInput : MonoBehaviour
 {
+    private Vector2 fingerDown;
+    private Vector2 fingerUp;
+    public bool detectSwipeOnlyAfterRelease = false;
+    private bool fingerUsed = false;
+    public float SWIPE_THRESHOLD = 20f;
 
-    public Vector2 startPos;
-    public Vector2 direction;
-    public bool directionChosen;
-
+    // Update is called once per frame
     void Update()
     {
-        // Track a single touch as a direction control.
-        if (Input.touchCount > 0)
+
+        foreach (Touch touch in Input.touches)
         {
-            Touch touch = Input.GetTouch(0);
-
-            // Handle finger movements based on touch phase.
-            switch (touch.phase)
+            if (touch.phase == TouchPhase.Began)
             {
-                // Record initial touch position.
-                case TouchPhase.Began:
-                    startPos = touch.position;
-                    directionChosen = false;
-                    break;
+                fingerUp = touch.position;
+                fingerDown = touch.position;
+            }
 
-                // Determine direction by comparing the current touch position with the initial one.
-                case TouchPhase.Moved:
-                    direction = touch.position - startPos;
-                    break;
+            //Detects Swipe while finger is still moving
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if (!detectSwipeOnlyAfterRelease)
+                {
+                    fingerDown = touch.position;
+                    checkSwipe();
+                }
+            }
 
-                // Report that a direction has been chosen when the finger is lifted.
-                case TouchPhase.Ended:
-                    directionChosen = true;
-                    break;
+            //Detects swipe after finger is released
+            if (touch.phase == TouchPhase.Ended)
+            {
+                fingerDown = touch.position;
+                checkSwipe();
+                fingerUsed = true;
             }
         }
-        if (directionChosen)
-        {
-            if (direction.y > 0)
-            {
-                Debug.Log("Jump?");
-                Reset();
-            }
-            else if (direction.y < 0)
-            {
-                Debug.Log("Slide?");
-                Reset();
-            }
-            else if (direction.x < 0)
-            {
-                Debug.Log("Do something?");
-                Reset();
-            }
-            else
-            {
-                Debug.Log("You what?");
-                Reset();
-            }
-        
-        }
-    
-        void Reset()
-        {
-            startPos.Set(0,0);
-            direction.Set(0,0);
-            directionChosen = false;
-        }
-    
     }
+
+    void checkSwipe()
+    {
+        //Check if Vertical swipe
+        if (verticalMove() > SWIPE_THRESHOLD && verticalMove() > horizontalValMove())
+        {
+            //Debug.Log("Vertical");
+            if (fingerDown.y - fingerUp.y > 0)//up swipe
+            {
+                OnSwipeUp();
+            }
+            else if (fingerDown.y - fingerUp.y < 0)//Down swipe
+            {
+                OnSwipeDown();
+            }
+            fingerUp = fingerDown;
+           
+        }
+
+        //Check if Horizontal swipe
+        else if (horizontalValMove() > SWIPE_THRESHOLD && horizontalValMove() > verticalMove())
+        {
+            //Debug.Log("Horizontal");
+            if (fingerDown.x - fingerUp.x > 0)//Right swipe
+            {
+                OnSwipeRight();
+            }
+            else if (fingerDown.x - fingerUp.x < 0)//Left swipe
+            {
+                OnSwipeLeft();
+            }
+            fingerUp = fingerDown;
+            
+        }
+
+        //No Movement at-all
+        else
+        {
+            //Debug.Log("No Swipe!");
+        }
+    }
+
+    float verticalMove()
+    {
+        return Mathf.Abs(fingerDown.y - fingerUp.y);
+    }
+
+    float horizontalValMove()
+    {
+        return Mathf.Abs(fingerDown.x - fingerUp.x);
+    }
+
+
+    void OnSwipeUp()
+    {
+        Debug.Log("Swipe UP");
+        fingerUsed = false;
+    }
+
+    void OnSwipeDown()
+    {
+        Debug.Log("Swipe Down");
+        fingerUsed = false;
+    }
+
+    void OnSwipeLeft()
+    {
+        Debug.Log("Swipe Left");
+        fingerUsed = false;
+    }
+
+    void OnSwipeRight()
+    {
+        Debug.Log("Swipe Right");
+        fingerUsed = false;
+    }
+
 }

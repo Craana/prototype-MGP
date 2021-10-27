@@ -247,7 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0}
   direction: {x: 0, y: 0}
-  directionChosen: 0
+  deadZone: 10
 --- !u!4 &853232970
 Transform:
   m_ObjectHideFlags: 0
