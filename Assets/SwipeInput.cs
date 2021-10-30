@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SwipeInput : MonoBehaviour
 {
-    private Vector2 fingerDown;
-    private Vector2 fingerUp;
+    [SerializeField] private Vector2 fingerDown;
+    [SerializeField] private Vector2 fingerUp;
     public bool detectSwipeOnlyAfterRelease = false;
     private bool fingerUsed = false;
     public float SWIPE_THRESHOLD = 20f;
@@ -16,12 +16,12 @@ public class SwipeInput : MonoBehaviour
 
         foreach (Touch touch in Input.touches)
         {
+        
             if (touch.phase == TouchPhase.Began)
             {
                 fingerUp = touch.position;
                 fingerDown = touch.position;
             }
-
             //Detects Swipe while finger is still moving
             if (touch.phase == TouchPhase.Moved)
             {
@@ -31,7 +31,6 @@ public class SwipeInput : MonoBehaviour
                     checkSwipe();
                 }
             }
-
             //Detects swipe after finger is released
             if (touch.phase == TouchPhase.Ended)
             {
@@ -108,6 +107,8 @@ public class SwipeInput : MonoBehaviour
 
     void OnSwipeLeft()
     {
+
+        //this function calls from camera area to manipulate level object
         Debug.Log("Swipe Left");
         fingerUsed = false;
     }
