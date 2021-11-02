@@ -9,6 +9,7 @@ public class SwipeInput : MonoBehaviour
     public bool detectSwipeOnlyAfterRelease = false;
     private bool fingerUsed = false;
     public float SWIPE_THRESHOLD = 20f;
+    [SerializeField] CharacterMovingScript CMS;
 
     // Update is called once per frame
     void Update()
@@ -93,16 +94,18 @@ public class SwipeInput : MonoBehaviour
     }
 
 
-    void OnSwipeUp()
+   public void OnSwipeUp()
     {
         Debug.Log("Swipe UP");
         fingerUsed = false;
+        CMS.isJumping = true;
     }
 
     void OnSwipeDown()
     {
         Debug.Log("Swipe Down");
         fingerUsed = false;
+        //sliding goes here
     }
 
     void OnSwipeLeft()
