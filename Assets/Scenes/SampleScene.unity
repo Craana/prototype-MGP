@@ -136,15 +136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a0304fedfdea44488e079d5105d8030, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.685
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a0304fedfdea44488e079d5105d8030, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.021
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a0304fedfdea44488e079d5105d8030, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.0299
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a0304fedfdea44488e079d5105d8030, type: 3}
       propertyPath: m_LocalRotation.w
@@ -193,20 +193,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a0304fedfdea44488e079d5105d8030, type: 3}
   m_PrefabInstance: {fileID: 406376314}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &406376316
-CapsuleCollider:
+--- !u!114 &406376316
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406376315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8926644
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.98, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e548ab31754beb4f962b5c8a10bf0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 2
+  jumpHeight: 1
+  gravityValue: -9.81
+  isJumping: 0
 --- !u!54 &406376317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406376315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1569c0499e7ed9b4eb7da1c388c8adce, type: 3}
   m_Name: 
@@ -243,7 +245,7 @@ MonoBehaviour:
   fingerDown: {x: 0, y: 0}
   fingerUp: {x: 0, y: 0}
   detectSwipeOnlyAfterRelease: 0
-  SWIPE_THRESHOLD: 20
+  SWIPE_THRESHOLD: 10
   CMS: {fileID: 406376322}
 --- !u!143 &406376321
 CharacterController:
@@ -254,15 +256,15 @@ CharacterController:
   m_GameObject: {fileID: 406376315}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.18
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.07, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!114 &406376322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,17 +272,43 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406376315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff896e8058b92ed48b477055519a418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 406376321}
-  playerSpeed: 2
+  playerSpeed: 5
   jumpHeight: 1
   gravityValue: -9.81
-  forwardSpeed: 0
   isJumping: 0
+--- !u!65 &406376323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406376315}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.33979356, y: 1.9829943, z: 0.36746567}
+  m_Center: {x: 0.009234488, y: 0.9547461, z: 0.0073155463}
+--- !u!64 &406376324
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406376315}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6796121518194019630, guid: 2a0304fedfdea44488e079d5105d8030, type: 3}
 --- !u!1 &548664333
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +497,7 @@ GameObject:
   - component: {fileID: 913644256}
   - component: {fileID: 913644255}
   - component: {fileID: 913644254}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,8 +574,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913644253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.808}
-  m_LocalScale: {x: 10, y: 1, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 119.7}
+  m_LocalScale: {x: 10, y: 1, z: 246.16}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
