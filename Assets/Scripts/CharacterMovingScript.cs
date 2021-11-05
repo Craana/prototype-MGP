@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CharacterMovingScript : MonoBehaviour
 {
-
-               [SerializeField]  private CharacterController controller;
-                    private Vector3 playerVelocity;
-                     private bool groundedPlayer;
+    [SerializeField] private CharacterController controller;
+    private Vector3 playerVelocity;
+    [SerializeField] private bool groundedPlayer;
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
-    public bool isJumping = false;
+    [SerializeField] public bool isJumping = false;
+    [SerializeField] public bool isSliding = false;
     private Animator animator;
     private string currentAnimaton;
     const string PLAYER_IDLE = "Idle";
@@ -23,8 +23,10 @@ public class CharacterMovingScript : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        controller.detectCollisions = false;
+
     }
-     
+
     void Update()
     {
         groundedPlayer = controller.isGrounded;
@@ -41,26 +43,31 @@ public class CharacterMovingScript : MonoBehaviour
         {
             gameObject.transform.forward = move;
         }
-        if (playerSpeed > 0.1f && groundedPlayer && isJumping == false)
+        if (playerSpeed > 0.1f && groundedPlayer && isSliding == false)
         {
             ChangeAnimationState(PLAYER_RUN);
-            
+
         }
         jump();
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-        Slide();
+
+        StartCoroutine(Slide());
+
     }
 
-   public void jump()
+
+
+
+    public void jump()
     {
         if (isJumping == true && groundedPlayer)
-            {
-              playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-                 ChangeAnimationState(PLAYER_JUMP);
-         }
-            isJumping = false;
-     }
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            ChangeAnimationState(PLAYER_JUMP);
+        }
+        isJumping = false;
+    }
 
 
     void ChangeAnimationState(string newAnimation)
@@ -72,8 +79,18 @@ public class CharacterMovingScript : MonoBehaviour
     }
 
 
-    public void Slide()
+    IEnumerator Slide()
     {
-        
+        //TODO: change the height of the collider smaller so it shows like its doing something
+
+        var clipLength = animator.GetCurrentAnimatorStateInfo(0).length;
+
+        if (isSliding == true && groundedPlayer)
+        {
+            ChangeAnimationState(PLAYER_SLIDE);
+            yield return new WaitForSeconds(clipLength);
+            isSliding = false;
+        }
+
     }
 }

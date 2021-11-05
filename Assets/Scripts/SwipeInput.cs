@@ -105,7 +105,7 @@ public class SwipeInput : MonoBehaviour
     {
         Debug.Log("Swipe Down");
         fingerUsed = false;
-        //sliding goes here
+        CMS.isSliding = true;
     }
 
     void OnSwipeLeft()
