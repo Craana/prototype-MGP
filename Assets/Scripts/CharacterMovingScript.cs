@@ -53,7 +53,7 @@ public class CharacterMovingScript : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
 
         StartCoroutine(Slide());
-
+       
     }
 
 
@@ -84,6 +84,7 @@ public class CharacterMovingScript : MonoBehaviour
         //TODO: change the height of the collider smaller so it shows like its doing something
 
         var clipLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        
 
         if (isSliding == true && groundedPlayer)
         {
@@ -93,4 +94,10 @@ public class CharacterMovingScript : MonoBehaviour
         }
 
     }
+
+
+
+
+
+
 }

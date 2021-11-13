@@ -9,7 +9,7 @@ public class SwipeInput : MonoBehaviour
     public bool detectSwipeOnlyAfterRelease = false;
     private bool fingerUsed = false;
     public float SWIPE_THRESHOLD = 20f;
-    [SerializeField] CharacterMovingScript CMS;
+    [SerializeField] CharacterMoverScript CMS;
 
     // Update is called once per frame
     void Update()
