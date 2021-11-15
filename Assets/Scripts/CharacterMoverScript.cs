@@ -7,14 +7,16 @@ public class CharacterMoverScript : MonoBehaviour
    
     //TODO: Take a RB, make use of it and add jumping, sliding etc to rb mover script. 
 
-    private Vector3 playerVelocity = Vector3.zero;
+ 
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpForce = 1.0f;
       public bool isJumping = false;
     public bool isSliding = false;
     private CapsuleCollider capsuleCollider;
-    float distToGround;
+    private Rigidbody rb;
     private Animator animator;
+    float distToGround;
+    [SerializeField] float verticalMultiplier;
     private string currentAnimaton;
     const string PLAYER_IDLE = "Idle";
     const string PLAYER_RUN = "Run";
@@ -27,19 +29,22 @@ public class CharacterMoverScript : MonoBehaviour
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         distToGround = capsuleCollider.bounds.extents.y;
+        rb = GetComponent<Rigidbody>();
     }
 
 
     //fixedupdate here having Vector3 forwardmove transform.forward * speed* time.fixeddeltatime, Vector3 verticalmove = transoform.up * speed * time.fixeddeltatime * verticalMultiplier. rb.moveposition(rb.position + forwardmove + verticalmove);
+     void FixedUpdate()
+    {
+      
 
+    }
 
     // Update is called once per frame
     void Update()
     {
-
-        playerVelocity = new Vector3(0,0,playerSpeed);
-        gameObject.transform.Translate(playerVelocity * Time.deltaTime);
-      
+        Vector3 forwardMove = transform.forward * playerSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + forwardMove);
         jump();
         StartCoroutine(Slide());
     }
@@ -48,7 +53,7 @@ public class CharacterMoverScript : MonoBehaviour
     {
         if (isJumping == true && isGrounded())
         {
-            playerVelocity.y += jumpForce;
+            rb.AddForce(transform.up * jumpForce);
         }
         else if (!isGrounded())
         {
