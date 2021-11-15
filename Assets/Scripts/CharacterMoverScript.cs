@@ -29,9 +29,14 @@ public class CharacterMoverScript : MonoBehaviour
         distToGround = capsuleCollider.bounds.extents.y;
     }
 
+
+    //fixedupdate here having Vector3 forwardmove transform.forward * speed* time.fixeddeltatime, Vector3 verticalmove = transoform.up * speed * time.fixeddeltatime * verticalMultiplier. rb.moveposition(rb.position + forwardmove + verticalmove);
+
+
     // Update is called once per frame
     void Update()
     {
+
         playerVelocity = new Vector3(0,0,playerSpeed);
         gameObject.transform.Translate(playerVelocity * Time.deltaTime);
       
