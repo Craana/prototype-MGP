@@ -22,6 +22,7 @@ public class CharacterMoverScript : MonoBehaviour
     const string PLAYER_RUN = "Run";
     const string PLAYER_SLIDE = "RunningSlide";
     const string PLAYER_JUMP = "Jump";
+    int mask = 1 << 6;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,8 @@ public class CharacterMoverScript : MonoBehaviour
         jump();
         StartCoroutine(Slide());
         SlideChecker();
+        //Debug.Log("Am I grounded? " + isGrounded());
+        
     }
 
     void jump()
@@ -108,7 +111,7 @@ public class CharacterMoverScript : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround);
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround, mask);
     }
 
 }
