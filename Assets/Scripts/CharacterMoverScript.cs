@@ -69,6 +69,7 @@ public class CharacterMoverScript : MonoBehaviour
 
     void SlideChecker()
     {
+            //When sliding happens, it will changes size of boxcollider for small to ensure that character actually doesn't collide with objects
         if (isSliding == true)
         {
             boxCollider.size = new Vector3(1f, 0.50f, 0.39f);
