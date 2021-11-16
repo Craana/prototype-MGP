@@ -10,9 +10,9 @@ public class CharacterMoverScript : MonoBehaviour
  
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpForce = 1.0f;
-      public bool isJumping = false;
+    public bool isJumping = false;
     public bool isSliding = false;
-    private CapsuleCollider capsuleCollider;
+    private BoxCollider boxCollider;
     private Rigidbody rb;
     private Animator animator;
     float distToGround;
@@ -27,8 +27,8 @@ public class CharacterMoverScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
-        distToGround = capsuleCollider.bounds.extents.y;
+        boxCollider = GetComponent<BoxCollider>();
+        distToGround = boxCollider.bounds.extents.y;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -45,8 +45,13 @@ public class CharacterMoverScript : MonoBehaviour
     {
         Vector3 forwardMove = transform.forward * playerSpeed * Time.deltaTime;
         rb.MovePosition(rb.position + forwardMove);
+        if (isSliding == false && isJumping == false && isGrounded())
+        {
+            ChangeAnimationState(PLAYER_RUN);
+        }
         jump();
         StartCoroutine(Slide());
+        SlideChecker();
     }
 
     void jump()
@@ -54,10 +59,23 @@ public class CharacterMoverScript : MonoBehaviour
         if (isJumping == true && isGrounded())
         {
             rb.AddForce(transform.up * jumpForce);
+            ChangeAnimationState(PLAYER_JUMP);
         }
         else if (!isGrounded())
         {
             isJumping = false;
+        }
+    }
+
+    void SlideChecker()
+    {
+        if (isSliding == true)
+        {
+            boxCollider.size = new Vector3(1f, 0.50f, 0.39f);
+        }
+        else
+        {
+            boxCollider.size = new Vector3(1f, 1.65f, 0.39f);
         }
     }
 
@@ -70,9 +88,11 @@ public class CharacterMoverScript : MonoBehaviour
 
         if (isSliding == true && isGrounded())
         {
+           // boxCollider.size = new Vector3(1f, 0.45f, 0.39f);
             ChangeAnimationState(PLAYER_SLIDE);
             yield return new WaitForSeconds(clipLength);
             isSliding = false;
+            //boxCollider.size = new Vector3(1f, 1.79f, 0.39f);
         }
 
     }
