@@ -7,6 +7,12 @@ public class coinRotator : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] scoreCounter scorecounter;
 
+    private void Start()
+    {
+        
+    }
+
+
     void FixedUpdate()
     {
         transform.Rotate(0, rotateSpeed , 0);

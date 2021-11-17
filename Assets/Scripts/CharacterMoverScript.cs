@@ -23,6 +23,7 @@ public class CharacterMoverScript : MonoBehaviour
     const string PLAYER_SLIDE = "RunningSlide";
     const string PLAYER_JUMP = "Jump";
     int mask = 1 << 6;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class CharacterMoverScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         distToGround = boxCollider.bounds.extents.y;
         rb = GetComponent<Rigidbody>();
+  
     }
 
 
@@ -61,7 +63,8 @@ public class CharacterMoverScript : MonoBehaviour
     {
         if (isJumping == true && isGrounded())
         {
-            rb.AddForce(transform.up * jumpForce);
+            rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
+
             ChangeAnimationState(PLAYER_JUMP);
         }
         else if (!isGrounded())
