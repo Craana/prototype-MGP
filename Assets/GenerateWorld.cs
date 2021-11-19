@@ -9,6 +9,8 @@ public class GenerateWorld : MonoBehaviour
     [SerializeField] float offset = 2f;
     private int offsetCounter = 0;
     [SerializeField] private float platformlength;
+    [SerializeField] Transform playerTransform;
+
     void Start()    
     {
         Vector3 pos = new Vector3(0, 0, 0);
@@ -27,14 +29,14 @@ public class GenerateWorld : MonoBehaviour
        // Debug.Log(camerapos);
         for (int i = 0; i < platforms.Length; i++)
         {
-           float platformposition = platforms[i].transform.position.z;
+           float platformposition = platforms[0].transform.position.z;
 
-            if (platformposition < camerapos - offset)
+            if (platformposition < playerTransform.position.z)
             {
                 Debug.Log("Am I doing something?");
                 // For this which ever platform is behind sets to the front of character
                 offsetCounter++;
-                platforms[i].transform.position = new Vector3(platforms[i].transform.position.x , platforms[i].transform.position.y, (offsetCounter + platforms.Length) * platformlength);
+                platforms[0].transform.position = new Vector3(platforms[i].transform.position.x , platforms[i].transform.position.y, platforms[i].transform.position.z + platformposition);
             }
         }
     }
