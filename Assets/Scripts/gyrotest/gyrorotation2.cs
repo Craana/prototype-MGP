@@ -14,18 +14,18 @@ public class gyrorotation2 : MonoBehaviour
     void Start()
     {
         //Subtract Quaternion
-        offset = transform.rotation * Quaternion.Inverse(GyroToUnity(Input.gyro.attitude));
+        offset = transform.rotation;// * Quaternion.Inverse(GyroToUnity(Input.gyro.attitude));
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        GyroModifyCamera();
+        GyroManipulation();
     }
 
-    void GyroModifyCamera()
+    void GyroManipulation()
     {
         //Apply offset
-        transform.rotation = offset * GyroToUnity(Input.gyro.attitude);
+        transform.rotation = Input.gyro.attitude; //offset * GyroToUnity(Input.gyro.attitude); //* Quaternion.Euler(0,0,90);
     }
 
     private static Quaternion GyroToUnity(Quaternion q)

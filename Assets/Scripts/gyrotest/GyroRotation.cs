@@ -26,7 +26,7 @@ public class GyroRotation : MonoBehaviour
 
         if (isGyroAvailable)
         {
-            transform.rotation = gyroRotation(Input.gyro.attitude);
+            transform.rotation = gyroRotation(Input.gyro.attitude) ;
         }
 
     }
@@ -34,7 +34,7 @@ public class GyroRotation : MonoBehaviour
 
     Quaternion gyroRotation(Quaternion q)
     {
-        return new Quaternion(q.x, q.y, -q.z, -q.w);
+        return new Quaternion(q.x, q.y, q.z, q.w);
     }
 
 }
