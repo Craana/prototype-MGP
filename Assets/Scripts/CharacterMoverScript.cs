@@ -39,13 +39,7 @@ public class CharacterMoverScript : MonoBehaviour
     //fixedupdate here having Vector3 forwardmove transform.forward * speed* time.fixeddeltatime, Vector3 verticalmove = transoform.up * speed * time.fixeddeltatime * verticalMultiplier. rb.moveposition(rb.position + forwardmove + verticalmove);
      void FixedUpdate()
     {
-      
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         Vector3 forwardMove = transform.forward * playerSpeed * Time.deltaTime;
         rb.MovePosition(rb.position + forwardMove);
         if (isSliding == false && isJumping == false && isGrounded())
@@ -53,6 +47,12 @@ public class CharacterMoverScript : MonoBehaviour
             ChangeAnimationState(PLAYER_RUN);
         }
         jump();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
         StartCoroutine(Slide());
         SlideChecker();
         //Debug.Log("Am I grounded? " + isGrounded());
