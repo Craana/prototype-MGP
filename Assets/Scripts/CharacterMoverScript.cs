@@ -32,7 +32,7 @@ public class CharacterMoverScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         distToGround = boxCollider.bounds.extents.y;
         rb = GetComponent<Rigidbody>();
-  
+        InvokeRepeating("AddSpeed", 0.5f, 10f);
     }
 
 
@@ -117,4 +117,13 @@ public class CharacterMoverScript : MonoBehaviour
         return Physics.Raycast(transform.position, -Vector3.up, distToGround, mask);
     }
 
+    void AddSpeed()
+    {
+        playerSpeed += 0.5f;
+        if (playerSpeed == 8)
+        {
+            playerSpeed = 8;
+        }
+        
+    }
 }

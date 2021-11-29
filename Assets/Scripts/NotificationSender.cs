@@ -19,6 +19,14 @@ public class NotificationSender : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
+        var channel2 = new AndroidNotificationChannel()
+        {
+            Id = "channel_id2",
+            Name = " Second Default Channel",
+            Importance = Importance.Default,
+            Description = "Second Generic Notification"
+        };
+        AndroidNotificationCenter.RegisterNotificationChannel(channel2);
     }
 
     void OnApplicationPause(bool pauseStatus)
@@ -38,19 +46,19 @@ public class NotificationSender : MonoBehaviour
         notification.Title = "visit our website";
         notification.Text = "blahblahblah.com";
         notification.FireTime = System.DateTime.Now.AddSeconds(15);
-
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
         AndroidNotificationCenter.SendNotification(notification, "channel_id");
     }
  
     public void BackgroundNotification()
     {
-
+        
         var notification = new AndroidNotification();
         notification.Title = "Please come back!";
         notification.Text = "Plsplsplspls";
         notification.FireTime = System.DateTime.Now.AddSeconds(5);
-
-        AndroidNotificationCenter.SendNotification(notification, "channel_id");
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
+        AndroidNotificationCenter.SendNotification(notification, "channel_id2");
     }
 }
 
