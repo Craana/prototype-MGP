@@ -57,7 +57,6 @@ public class NotificationSender : MonoBehaviour
         notification.Title = "Please come back!";
         notification.Text = "Plsplsplspls";
         notification.FireTime = System.DateTime.Now.AddSeconds(5);
-        AndroidNotificationCenter.CancelAllScheduledNotifications();
         AndroidNotificationCenter.SendNotification(notification, "channel_id2");
     }
 }
