@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8364557872853936574}
-  - component: {fileID: 8364557872853936569}
+  - component: {fileID: 8364557872126435060}
   m_Layer: 0
   m_Name: worldgenerator
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8364557872853936569
+--- !u!114 &8364557872126435060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8364557872853936568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49eaaed663a4f8c4a8709c4bf024bb65, type: 3}
+  m_Script: {fileID: 11500000, guid: 28f1e69e9be807d42b2064eac4ddd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platforms:
+  tilePrefabs:
   - {fileID: 8886413249354862937, guid: 6d1a05320bf584446b826555ca653004, type: 3}
-  - {fileID: 8886413249354862937, guid: 9d1a8616aa7d03f4a9a178f044d7ed5f, type: 3}
-  - {fileID: 8886413249354862937, guid: 5a00730066c35b147aa525afbcb59e8a, type: 3}
+  - {fileID: 8886413249354862937, guid: fd4299e24e985d64a9d3ebe205c3cc7a, type: 3}
+  - {fileID: 8886413249354862937, guid: be2d017256a49c247a29559d9ece2d37, type: 3}
+  zSpawn: 30
+  tileLength: 20
+  numberOfTiles: 5
+  playerTransform: {fileID: 0}

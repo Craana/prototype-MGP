@@ -9,10 +9,11 @@ public class PrefabSpawner : MonoBehaviour
     [SerializeField] float zSpawn = 0;
     [SerializeField] float tileLength = 30;
     [SerializeField] int numberOfTiles = 5;
+   
     private List<GameObject> activeTiles = new List<GameObject>();
 
     [SerializeField] Transform playerTransform;
-
+    [SerializeField] float backdistanceofPlayer = -35f;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class PrefabSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerTransform.position.z -35 > zSpawn - (numberOfTiles * tileLength))
+        if (playerTransform.position.z + backdistanceofPlayer > zSpawn - (numberOfTiles * tileLength))
         {
             SpawnTile(Random.Range(0,tilePrefabs.Length));
             DeleteTile();
