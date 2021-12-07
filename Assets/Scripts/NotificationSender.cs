@@ -19,14 +19,6 @@ public class NotificationSender : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
-        var channel2 = new AndroidNotificationChannel()
-        {
-            Id = "channel_id2",
-            Name = " Second Default Channel",
-            Importance = Importance.Default,
-            Description = "Second Generic Notification"
-        };
-        AndroidNotificationCenter.RegisterNotificationChannel(channel2);
     }
 
     void OnApplicationPause(bool pauseStatus)
@@ -46,7 +38,7 @@ public class NotificationSender : MonoBehaviour
         notification.Title = "visit our website";
         notification.Text = "blahblahblah.com";
         notification.FireTime = System.DateTime.Now.AddSeconds(15);
-        AndroidNotificationCenter.CancelAllScheduledNotifications();
+
         AndroidNotificationCenter.SendNotification(notification, "channel_id");
         Debug.Log("Button notification sent");
 
@@ -54,14 +46,19 @@ public class NotificationSender : MonoBehaviour
  
     public void BackgroundNotification()
     {
-        
+
         var notification = new AndroidNotification();
         notification.Title = "Please come back!";
         notification.Text = "Plsplsplspls";
         notification.FireTime = System.DateTime.Now.AddSeconds(5);
+<<<<<<< HEAD
         AndroidNotificationCenter.SendNotification(notification, "channel_id2");
 
         Debug.Log("Background notification sent");
+=======
+
+        AndroidNotificationCenter.SendNotification(notification, "channel_id");
+>>>>>>> parent of 86949e9 (The very last version)
     }
 }
 
