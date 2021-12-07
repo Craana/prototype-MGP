@@ -48,6 +48,8 @@ public class NotificationSender : MonoBehaviour
         notification.FireTime = System.DateTime.Now.AddSeconds(15);
         AndroidNotificationCenter.CancelAllScheduledNotifications();
         AndroidNotificationCenter.SendNotification(notification, "channel_id");
+        Debug.Log("Button notification sent");
+
     }
  
     public void BackgroundNotification()
@@ -58,6 +60,8 @@ public class NotificationSender : MonoBehaviour
         notification.Text = "Plsplsplspls";
         notification.FireTime = System.DateTime.Now.AddSeconds(5);
         AndroidNotificationCenter.SendNotification(notification, "channel_id2");
+
+        Debug.Log("Background notification sent");
     }
 }
 
