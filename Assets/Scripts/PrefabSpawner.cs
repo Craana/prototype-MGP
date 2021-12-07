@@ -39,9 +39,6 @@ public class PrefabSpawner : MonoBehaviour
             DeleteTile();
         }
     }
-    
-
-
     public void SpawnTile(int tileIndex)
     {
         GameObject go = Instantiate(tilePrefabs[tileIndex], transform.forward*zSpawn, transform.rotation);

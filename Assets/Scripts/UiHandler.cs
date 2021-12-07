@@ -17,14 +17,9 @@ public class UiHandler : MonoBehaviour
 
     void Update()
     {
-        DisplayScore();   
+        scoreText.text = "score: " + scorecounter.informScore().ToString();
         DisplayTime();
 
-    }
-
-    void DisplayScore()
-    {
-        scoreText.text = "score: " + scorecounter.informScore().ToString();
     }
 
 

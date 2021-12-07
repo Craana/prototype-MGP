@@ -40,8 +40,6 @@ public class NotificationSender : MonoBehaviour
         notification.FireTime = System.DateTime.Now.AddSeconds(15);
 
         AndroidNotificationCenter.SendNotification(notification, "channel_id");
-        Debug.Log("Button notification sent");
-
     }
  
     public void BackgroundNotification()
@@ -51,19 +49,8 @@ public class NotificationSender : MonoBehaviour
         notification.Title = "Please come back!";
         notification.Text = "Plsplsplspls";
         notification.FireTime = System.DateTime.Now.AddSeconds(5);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        AndroidNotificationCenter.SendNotification(notification, "channel_id2");
-
-        Debug.Log("Background notification sent");
-=======
 
         AndroidNotificationCenter.SendNotification(notification, "channel_id");
->>>>>>> parent of 86949e9 (The very last version)
-=======
-
-        AndroidNotificationCenter.SendNotification(notification, "channel_id");
->>>>>>> parent of 86949e9 (The very last version)
     }
 }
 
