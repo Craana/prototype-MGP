@@ -14,7 +14,7 @@ public class PrefabSpawner : MonoBehaviour
 
     [SerializeField] Transform playerTransform;
     [SerializeField] float backdistanceofPlayer = -35f;
-  
+    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < numberOfTiles; i++)
@@ -30,6 +30,7 @@ public class PrefabSpawner : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (playerTransform.position.z + backdistanceofPlayer > zSpawn - (numberOfTiles * tileLength))
