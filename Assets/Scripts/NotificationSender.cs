@@ -52,9 +52,14 @@ public class NotificationSender : MonoBehaviour
         notification.Text = "Plsplsplspls";
         notification.FireTime = System.DateTime.Now.AddSeconds(5);
 <<<<<<< HEAD
+<<<<<<< HEAD
         AndroidNotificationCenter.SendNotification(notification, "channel_id2");
 
         Debug.Log("Background notification sent");
+=======
+
+        AndroidNotificationCenter.SendNotification(notification, "channel_id");
+>>>>>>> parent of 86949e9 (The very last version)
 =======
 
         AndroidNotificationCenter.SendNotification(notification, "channel_id");
