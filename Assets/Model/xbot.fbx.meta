@@ -6,12 +6,22 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beta_Joints_MAT
+    second: {fileID: 2100000, guid: a78afb4e5a9ca7848ab9502c6c2e2619, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: asdf1_Beta_HighLimbsGeoSG2
+    second: {fileID: 2100000, guid: b19fca56fbf8a4246bf0d8157f7539e9, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
