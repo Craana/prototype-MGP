@@ -27,6 +27,5 @@ public class coinRotator : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-
+    
 }

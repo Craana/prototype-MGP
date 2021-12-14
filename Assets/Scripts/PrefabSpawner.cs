@@ -51,6 +51,4 @@ public class PrefabSpawner : MonoBehaviour
         activeTiles.RemoveAt(0);
     }
 
-
-
 }

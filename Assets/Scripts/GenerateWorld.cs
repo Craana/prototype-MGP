@@ -6,23 +6,22 @@ public class GenerateWorld : MonoBehaviour
 {
 
     [SerializeField] GameObject[] platforms;
-    [SerializeField] float offset = 2f;
+    //[SerializeField] float offset = 2f;
     private int offsetCounter = 0;
     [SerializeField] private float platformlength;
     [SerializeField] Transform playerTransform;
+    [SerializeField] int numberOfPlatforms;
     private List<GameObject> ActiveTiles = new List<GameObject>();
 
     void Start()    
     {
         Vector3 pos = new Vector3(0, 0, 0);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < numberOfPlatforms; i++)
         {
-            int platformNumber = Random.Range(0, platforms.Length);
-            Instantiate(platforms[platformNumber], pos, Quaternion.identity);
-            pos.z += 20;
+            Instantiate(platforms[i], pos, Quaternion.identity);
+            pos.z += platformlength;
         }
     }
-
 
     private void Update()
     {

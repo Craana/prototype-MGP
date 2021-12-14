@@ -19,6 +19,9 @@ public class NotificationSender : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
+
+        
+
     }
 
     void OnApplicationPause(bool pauseStatus)
