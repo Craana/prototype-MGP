@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformManager : MonoBehaviour
+public class HazardManager : MonoBehaviour
 {
-	[SerializeField] GameObject[] _platformPrefabs;
-	[SerializeField] int platformLength; 
+
+	[SerializeField] GameObject[] _hazardPrefabs;
+	[SerializeField] int hazardRange; 
 	[SerializeField] 
 	private int zOffset;
 	
@@ -14,10 +15,10 @@ public class PlatformManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		for (int i = 0; i < _platformPrefabs.Length; i++)
+		for (int i = 0; i < _hazardPrefabs.Length; i++)
 		{
-			Instantiate(_platformPrefabs[i], new Vector3(0,0, i * platformLength), Quaternion.identity);
-			zOffset += platformLength;
+			Instantiate(_hazardPrefabs[i], new Vector3(0,0, i * hazardRange), Quaternion.identity);
+			zOffset += hazardRange;
 		}
 	
 	}
@@ -26,6 +27,6 @@ public class PlatformManager : MonoBehaviour
 	public void RecyclePlatform(GameObject platform)
 	{
 		platform.transform.position = new Vector3(0,0, zOffset);
-		zOffset += platformLength;
+		zOffset += hazardRange;
 	}
 }
