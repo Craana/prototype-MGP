@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class CharacterMoverScript : MonoBehaviour
 {
    
@@ -25,9 +25,11 @@ public class CharacterMoverScript : MonoBehaviour
 	int mask = 1 << 6;
  
 
+
 	// Start is called before the first frame update
 	void Start()
 	{
+
 		animator = GetComponent<Animator>();
 		boxCollider = GetComponent<BoxCollider>();
 		distToGround = boxCollider.bounds.extents.y;
@@ -45,6 +47,7 @@ public class CharacterMoverScript : MonoBehaviour
 		if (isSliding == false && isJumping == false && isGrounded())
 		{
 			ChangeAnimationState(PLAYER_RUN);
+			
 		}
 		jump();
 	}
