@@ -23,13 +23,13 @@ public class CharacterMoverScript : MonoBehaviour
 	const string PLAYER_SLIDE = "RunningSlide";
 	const string PLAYER_JUMP = "Jump";
 	int mask = 1 << 6;
- 
-
+	bool _clipPlaying = false;
+	private AudioSource audioSource;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		audioSource = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		boxCollider = GetComponent<BoxCollider>();
 		distToGround = boxCollider.bounds.extents.y;
@@ -47,7 +47,6 @@ public class CharacterMoverScript : MonoBehaviour
 		if (isSliding == false && isJumping == false && isGrounded())
 		{
 			ChangeAnimationState(PLAYER_RUN);
-			
 		}
 		jump();
 	}
@@ -59,7 +58,7 @@ public class CharacterMoverScript : MonoBehaviour
 		StartCoroutine(Slide());
 		SlideChecker();
 		//Debug.Log("Am I grounded? " + isGrounded());
-		
+	
 	}
 
 	void jump()
